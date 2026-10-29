@@ -1,0 +1,133 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  CV - AI ENGINEER INTERN (tailored: Alliance IT Service, 2026-10-29)
+%  Nguyen Minh Phuong  |  1-column, 1 page A4
+%  COMPILE WITH: XeLaTeX  (Overleaf -> Menu -> Compiler -> XeLaTeX)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[10pt, a4paper]{article}
+
+%---------- PACKAGES ----------
+\usepackage[top=0.6cm, bottom=0.6cm, left=1.2cm, right=1.2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+%---------- FONTS (Times New Roman, fallback: TeX Gyre Termes) ----------
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}}
+  {\setmainfont{TeX Gyre Termes}}
+
+%---------- COLORS ----------
+\definecolor{NavyBlue}{HTML}{0C447C}
+\definecolor{BodyText}{HTML}{2C2C2A}
+\definecolor{MutedText}{HTML}{5F5E5A}
+\definecolor{LinkColor}{HTML}{185FA5}
+\hypersetup{colorlinks=true, urlcolor=LinkColor, linkcolor=LinkColor,
+  pdftitle={Nguyen Minh Phuong - AI Engineer Intern CV},
+  pdfauthor={Nguyen Minh Phuong}}
+
+%---------- LAYOUT ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.0}
+\pagestyle{empty}
+\frenchspacing
+\setlength{\emergencystretch}{1.5em}
+\hyphenation{PostgreSQL JavaScript TypeScript Swagger OpenAPI}
+
+\titleformat{\section}
+  {\large\bfseries\color{NavyBlue}}{}{0em}{\MakeUppercase}
+  [\vspace{-5pt}{\color{NavyBlue}\rule{\linewidth}{0.6pt}}]
+\titlespacing{\section}{0pt}{3pt}{2pt}
+
+\setlist[itemize]{leftmargin=1.1em, label=\textbullet, itemsep=0pt, topsep=0.5pt, parsep=0pt}
+
+%---------- HELPERS ----------
+% Bold: headings, skill-category labels and measured numbers in Key Projects.
+\newcommand{\entry}[2]{\textbf{#1}\hfill#2\par}
+\newcommand{\subentry}[2]{{\color{MutedText}#1}\hfill{\color{MutedText}#2}\par}
+\newcommand{\project}[3]{\textbf{#1}\,{\color{MutedText}\textbar{} #2}\hfill\href{#3}{GitHub}\par}
+\newcommand{\skillrow}[2]{\textbf{#1}: #2\par}
+\newcommand{\techstack}[1]{{\color{MutedText}Tech stack: #1}\par}
+\newcommand{\award}[3]{\item #1 {\color{MutedText}- #2}\hfill{\color{MutedText}#3}}
+
+\begin{document}
+\color{BodyText}
+
+%======================================================================
+\begin{center}
+  {\fontsize{21pt}{25pt}\selectfont\bfseries\color{NavyBlue} NGUYỄN MINH PHƯƠNG}\\[3pt]
+  {\fontsize{12.5pt}{15pt}\selectfont\color{MutedText} AI Engineer Intern }\\[4pt]
+  {\footnotesize
+  \href{mailto:phuongnm150505@gmail.com}{phuongnm150505@gmail.com}
+  \,\textbar\, +84 896 980 529
+  \,\textbar\, Ho Chi Minh City
+  \,\textbar\, \href{https://github.com/minhphuong150505}{github.com/minhphuong150505}
+  \,\textbar\, \href{https://www.linkedin.com/in/phuongnm150505/}{linkedin.com/in/phuongnm150505}}
+\end{center}
+\vspace{-6pt}
+
+%======================================================================
+\section{Technical Skills}
+\skillrow{Programming}{Python, Java, SQL, TypeScript, JavaScript}
+\skillrow{AI / ML}{PyTorch, Hugging Face Transformers, Transformer Architecture, LLM Fine-tuning (QLoRA / PEFT), Vision-Language Models, Multi-label Image Classification, OpenCV, torchvision, Grad-CAM, scikit-learn, NumPy, pandas, Matplotlib}
+\skillrow{LLM \& RAG}{RAG, Embeddings, Vector Database (Milvus), LangChain text splitters, Prompt Engineering, MedGemma, Ollama}
+\skillrow{Evaluation \& Benchmarking}{AUROC, AUPRC, F1, Precision / Recall, Threshold Calibration, Bootstrap CIs, Ablation Studies, BLEU, ROUGE-L, BERTScore}
+\skillrow{Backend \& Deployment}{FastAPI, Spring Boot 3, REST API, PostgreSQL, Docker, Docker Compose, GCP, Linux, CUDA}
+\skillrow{Tools}{Git, GitHub, pytest, W\&B, Jira, AI Agents (Claude Code, Codex, GitHub Copilot)}
+
+%======================================================================
+\section{Key Projects}
+\project{META-CXR - Multimodal AI for Chest X-ray Report Generation}{Graduation thesis \textbullet{} Solo}{https://github.com/minhphuong150505/Meta-CXR}
+\begin{itemize}
+  \item Reproduced and extended a two-stage vision-language model (IEEE Access 2025) in PyTorch on MIMIC-CXR: two medical vision encoders (BioViL-T, PubMedCLIP) + Q-Former classify \textbf{14} abnormalities, then MedGemma-4B fine-tuned with QLoRA writes the report.
+  \item Model optimization: partially unfreezing both encoders raised test macro-AUROC \textbf{0.744 $\rightarrow$ 0.764} on \textbf{3,269} held-out studies (paired bootstrap CI above 0, gains on \textbf{14/14} labels), with thresholds calibrated on validation only.
+  \item Fixed an image-representation bug: restored each encoder's native patch grid and removed a constant component by per-image centering, cutting pairwise patch cosine similarity from \textbf{0.674} to \textbf{-0.014} at only \textbf{+0.6\%} step time.
+  \item Reproducible experiments: controlled A/B runs dropped components with no measurable gain (Grad-CAM explanation loss, deeper unfreezing); joining MS-CXR boxes by image ID exposed \textbf{166} boxes leaking into the test split; \textbf{1,012} pytest tests passed.
+  \item LLM debugging: found the chat stop token was overridden, so \textbf{78\%} of generated tokens came after the model had finished.
+  \item Infrastructure: full training on one \textbf{16 GB} GPU (fixed recurring kernel faults traced to unstable RAM settings); multi-GPU DDP smoke runs on \textbf{2$\times$ T4} with checkpoints on Google Cloud Storage.
+\end{itemize}
+\vspace{2pt}
+\project{FPT Tri Thuc - Enterprise RAG Assistant}{Solo}{https://github.com/minhphuong150505/milvus-rag-demo}
+\begin{itemize}
+  \item Python ingestion pipeline (PDF / web / text loaders, chunking, embedding, hash dedup) into Milvus 2.4, plus a Spring Boot RAG API for Vietnamese Q\&A over FPT corporate documents.
+  \item Pulls \textbf{64} candidates from Milvus, re-ranks by cosine plus keyword / bigram coverage, cites sources and abstains when evidence is weak; shows each chunk's cosine score in the UI so retrieval quality can be audited.
+  \item Token streaming over SSE with JSON fallback and per-upstream timeouts; \textbf{25} JUnit / Mockito tests and \textbf{9} Playwright E2E tests; runs on Docker Compose.
+\end{itemize}
+\vspace{2pt}
+\project{Chinese Learning Platform - Full-Stack AI Web App}{Solo}{https://github.com/minhphuong150505/Web_Chinese_Learning-}
+\begin{itemize}
+  \item Designed, built and deployed the whole product alone in under \textbf{2 months}; used by friends, and iterated on their feedback.
+  \item Integrated AI into a real product: a Spring Boot API orchestrates an LLM (chat, translation, writing feedback), Azure Speech and a Python FastAPI service for F0 pitch analysis (per-syllable tone scoring); PostgreSQL + Flyway, Docker, deployed on GCP over HTTPS.
+\end{itemize}
+
+%======================================================================
+\section{Work Experience}
+\entry{FPT Software \textbar{} Java Developer Intern}{Ho Chi Minh City \textbar{} May 2026 - Oct 2026}
+\subentry{Project BUHINH - on-premise to cloud migration of a Japanese automaker's manufacturing BOM (MBOM) system}{}
+\techstack{Java EE, Spring Boot, Spring MVC, JSP, JavaScript, JDBC, SQL, IBM Db2, Maven, GitLab, Jira, GitHub Copilot}
+\begin{itemize}
+  \item Helped the team finish migration Phase 2 ahead of schedule by moving legacy Java EE sub-systems to Spring Boot / Spring MVC, using GitHub Copilot under the team's prompt rules and hand-reviewing every pattern it flagged.
+  \item Brought the cloud version of the parts-applicability search subsystem back in line with the legacy on-premise system: about 50 UI and 30 logic defects fixed and merged through GitLab merge requests.
+  \item Found about 15 on-premise vs cloud differences, logged them on Jira with reproducible steps and evidence, and resolved about 15 tickets as a full team member, on or ahead of deadline; internship rated 10/10 by the company.
+\end{itemize}
+
+%======================================================================
+\section{Education}
+\entry{University of Information Technology (UIT) - VNU-HCM \textbar{} Information Systems}{2023 - 2027}
+GPA: 8.5/10 \,\textbar\, Final-year student, all required coursework completed \,\textbar\, Expected graduation: Jun 2027\par
+
+%======================================================================
+\section{Awards And Certificates}
+\begin{itemize}
+  \award{Outstanding Student}{UIT - VNU-HCM, Semester 2 of academic year 2024 - 2025}{2025}
+  \award{Academic Scholarship}{UIT - VNU-HCM, Top 8\% of major, awarded for 2 semesters}{2023 - 2025}
+\end{itemize}
+
+%======================================================================
+\section{Languages}
+English: B2 (CEFR) equivalent - reads technical documentation and AI/ML research papers with ease\par
+
+\end{document}

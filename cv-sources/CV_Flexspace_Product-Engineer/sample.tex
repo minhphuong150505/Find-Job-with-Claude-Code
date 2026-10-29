@@ -1,0 +1,135 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  CV - PRODUCT ENGINEER (tailored: Flexspace, 2026-10-29)
+%  Nguyen Minh Phuong  |  1-column, 1 page A4
+%  COMPILE WITH: XeLaTeX  (Overleaf -> Menu -> Compiler -> XeLaTeX)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[10pt, a4paper]{article}
+
+%---------- PACKAGES ----------
+\usepackage[top=0.6cm, bottom=0.6cm, left=1.2cm, right=1.2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+%---------- FONTS (Times New Roman, fallback: TeX Gyre Termes) ----------
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}}
+  {\setmainfont{TeX Gyre Termes}}
+
+%---------- COLORS ----------
+\definecolor{NavyBlue}{HTML}{0C447C}
+\definecolor{BodyText}{HTML}{2C2C2A}
+\definecolor{MutedText}{HTML}{5F5E5A}
+\definecolor{LinkColor}{HTML}{185FA5}
+\hypersetup{colorlinks=true, urlcolor=LinkColor, linkcolor=LinkColor,
+  pdftitle={Nguyen Minh Phuong - Product Engineer CV},
+  pdfauthor={Nguyen Minh Phuong}}
+
+%---------- LAYOUT ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.0}
+\pagestyle{empty}
+\frenchspacing
+\setlength{\emergencystretch}{1.5em}
+\hyphenation{PostgreSQL JavaScript TypeScript Swagger OpenAPI RestTemplate WebClient Embeddings}
+
+\titleformat{\section}
+  {\large\bfseries\color{NavyBlue}}{}{0em}{\MakeUppercase}
+  [\vspace{-5pt}{\color{NavyBlue}\rule{\linewidth}{0.6pt}}]
+\titlespacing{\section}{0pt}{4pt}{2pt}
+
+\setlist[itemize]{leftmargin=1.1em, label=\textbullet, itemsep=0.5pt, topsep=1pt, parsep=0pt}
+
+%---------- HELPERS ----------
+% Bold: headings, skill-category labels and measured numbers in Key Projects.
+\newcommand{\entry}[2]{\textbf{#1}\hfill#2\par}
+\newcommand{\subentry}[2]{{\color{MutedText}#1}\hfill{\color{MutedText}#2}\par}
+\newcommand{\project}[3]{\textbf{#1}\,{\color{MutedText}\textbar{} #2}\hfill\href{#3}{GitHub}\par}
+\newcommand{\skillrow}[2]{\textbf{#1}: #2\par}
+\newcommand{\techstack}[1]{{\color{MutedText}Tech stack: #1}\par}
+\newcommand{\award}[3]{\item #1 {\color{MutedText}- #2}\hfill{\color{MutedText}#3}}
+
+\begin{document}
+\color{BodyText}
+
+%======================================================================
+\begin{center}
+  {\fontsize{21pt}{25pt}\selectfont\bfseries\color{NavyBlue} NGUYỄN MINH PHƯƠNG}\\[3pt]
+  {\fontsize{12.5pt}{15pt}\selectfont\color{MutedText} Product Engineer}\\[4pt]
+  {\footnotesize
+  \href{mailto:phuongnm150505@gmail.com}{phuongnm150505@gmail.com}
+  \,\textbar\, +84 896 980 529
+  \,\textbar\, Ho Chi Minh City
+  \,\textbar\, \href{https://github.com/minhphuong150505}{github.com/minhphuong150505}
+  \,\textbar\, \href{https://www.linkedin.com/in/phuongnm150505/}{linkedin.com/in/phuongnm150505}}
+\end{center}
+\vspace{-6pt}
+
+%======================================================================
+\section{Technical Skills}
+\skillrow{Programming}{TypeScript, JavaScript, Python, Java, SQL, HTML, CSS}
+\skillrow{Frontend}{React, TypeScript, Tailwind CSS, HTML, CSS}
+\skillrow{Backend}{Spring Boot 3, Spring Security, REST API, Server-Sent Events, JWT, OAuth2, FastAPI}
+\skillrow{Database}{PostgreSQL, MySQL, Milvus, Flyway}
+\skillrow{Integrations}{MoMo payment, GHN shipping, Google OAuth2, Azure Speech, LLM APIs, Resend email}
+\skillrow{Testing}{JUnit, Mockito, Testcontainers, Playwright, Postman}
+\skillrow{AI / LLM}{LLM API Integration, RAG, Embeddings, Prompt Engineering, Ollama}
+\skillrow{AI Coding Agents}{Claude Code, Codex, Cursor, GitHub Copilot, Context Engineering}
+\skillrow{Tools}{Git, GitHub, GitLab, GitHub Actions, Docker, Docker Compose, GCP, Linux, Jira, Agile / Scrum}
+
+%======================================================================
+\section{Key Projects}
+\project{Chinese Learning Platform - Full-Stack AI Web App}{Solo}{https://github.com/minhphuong150505/Web_Chinese_Learning-}
+\techstack{Java 21, Spring Boot 3, Spring Security, WebClient, Python, FastAPI, React, TypeScript, PostgreSQL, Flyway, Azure Speech, Docker, GCP}
+\begin{itemize}
+  \item Designed, built and deployed the whole product alone in under \textbf{2 months}, used by friends; \textbf{90} JUnit test cases across controllers, repositories, the LLM client and tone analysis; built with Claude Code guided by a project CLAUDE.md.
+  \item Backend: layered Spring Boot 3.3 (Java 21) REST API (controller / service / repository) with stateless JWT + Google OAuth2, orchestrating an LLM provider (chat, translation, writing feedback), Azure Speech and a Python FastAPI service for TTS and F0 tone analysis; API keys stay server-side.
+  \item Frontend \& deployment: React + TypeScript single-page app for chat, pronunciation, translation, writing and HSK practice; PostgreSQL schema versioned with Flyway; every service containerized with Docker and deployed on GCP behind Caddy HTTPS.
+\end{itemize}
+\vspace{2pt}
+\project{Lensora - Camera-Gear Marketplace (Android + Backend)}{Course project \textbullet{} Team of 4}{https://github.com/minhphuong150505/Lensora}
+\techstack{Java, Spring Boot, Spring Security, RestTemplate, PostgreSQL, Flyway, Android, Retrofit, Docker Compose, Postman}
+\begin{itemize}
+  \item As lead developer (1 of 2 developers), designed the JWT-secured Spring Boot REST API for buying, selling and renting photography gear (auth, products, cart, orders, rentals).
+  \item Turned buy / sell / rent business rules into a PostgreSQL schema managed with Flyway; integrated MoMo payment and GHN shipping via RestTemplate (JSON APIs, HMAC-verified payment callbacks) plus a catalog-grounded DeepSeek chatbot.
+\end{itemize}
+\vspace{2pt}
+\project{BABE 26 - Event Landing Page \& Registration}{Freelance project \textbullet{} Solo}{https://github.com/minhphuong150505/landing-page}
+\techstack{Java 17, Spring Boot, Spring Data JPA, MySQL, React, TypeScript, Tailwind CSS, Docker Compose, GCP, GitHub Actions, Resend}
+\begin{itemize}
+  \item Built the landing page and registration system for BABE Laboratorios' first running event in Vietnam: a Spring Boot (Java 17) + JPA + MySQL API with a JWT-secured admin dashboard and email confirmation via Resend.
+  \item React + TypeScript + Tailwind frontend with a Leaflet route map; deployed to production on GCP with Docker Compose and a GitHub Actions workflow.
+\end{itemize}
+
+%======================================================================
+\section{Work Experience}
+\entry{FPT Software \textbar{} Java Developer Intern}{Ho Chi Minh City \textbar{} May 2026 - Oct 2026}
+\subentry{Project BUHINH - on-premise to cloud migration of a Japanese automaker's manufacturing BOM (MBOM) system}{}
+\techstack{Java EE, Spring Boot, Spring MVC, JSP, JavaScript, JDBC, SQL, IBM Db2, Maven, GitLab, Jira, GitHub Copilot}
+\begin{itemize}
+  \item Helped the team finish migration Phase 2 ahead of schedule by moving legacy Java EE sub-systems to Spring Boot / Spring MVC, using GitHub Copilot under the team's prompt rules and hand-reviewing every pattern it flagged.
+  \item Brought the cloud version of the parts-applicability search subsystem back in line with the legacy on-premise system: about 50 UI and 30 logic defects fixed and merged through GitLab merge requests.
+  \item Found about 15 on-premise vs cloud differences, logged them on Jira with reproducible steps and evidence, and resolved about 15 tickets as a full team member, on or ahead of deadline; internship rated 10/10 by the company.
+\end{itemize}
+
+%======================================================================
+\section{Education}
+\entry{University of Information Technology (UIT) - VNU-HCM \textbar{} Information Systems}{2023 - 2027}
+GPA: 8.5/10 \,\textbar\, Final-year student, all required coursework completed \,\textbar\, Expected graduation: Jun 2027\par
+
+%======================================================================
+\section{Awards And Certificates}
+\begin{itemize}
+  \award{Outstanding Student}{UIT - VNU-HCM, Semester 2 of academic year 2024 - 2025}{2025}
+  \award{Academic Scholarship}{UIT - VNU-HCM, Top 8\% of major, awarded for 2 semesters}{2023 - 2025}
+\end{itemize}
+
+%======================================================================
+\section{Languages}
+English: B2 (CEFR) equivalent - reads technical documentation with ease and communicates confidently in a professional setting\par
+
+\end{document}
