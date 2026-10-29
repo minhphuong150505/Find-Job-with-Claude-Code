@@ -6,8 +6,13 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TODAY="${1:-$(date +%F)}"
 
-find "$ROOT/job-reports" -mindepth 2 \( -name report.md -o -name JD.md \) -not -path "*/job-reports/$TODAY/*" -print0 \
-  | xargs -0 -r grep -ohE 'https?://[^][ )|<>"`]+' \
-  | sed -E 's/[?#].*$//; s#/+$##; s/[.,;:]+$//' \
+{
+  find "$ROOT/job-reports" -mindepth 2 \( -name report.md -o -name JD.md \) -not -path "*/job-reports/$TODAY/*" -print0 \
+    | xargs -0 -r grep -ohE 'https?://[^][ )|<>"`]+' || true
+  # Link của các báo cáo đã xoá khỏi máy
+  if [ -f "$ROOT/job-reports/seen-links.txt" ]; then
+    grep -ohE 'https?://[^][ )|<>"`]+' "$ROOT/job-reports/seen-links.txt" || true
+  fi
+} | sed -E 's/[?#].*$//; s#/+$##; s/[.,;:]+$//' \
   | tr '[:upper:]' '[:lower:]' \
   | sort -u

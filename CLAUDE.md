@@ -57,7 +57,7 @@ Kết quả compile thử ở máy (2026-10-28): AI, SE, LLM, Java, Fullstack đ
 
 1. Lấy ngày từ `date`, không đoán.
 2. Chỉ ghi tin **đang mở**, có **link gốc**, ghi ngày đăng/hạn nộp nếu có. Loại tin trùng với các báo cáo trước.
-   **Không bao giờ đưa lại một link công việc đã có ở báo cáo của ngày khác.** Trước khi viết `report.md` cho ngày mới, chạy `bash scripts/seen_job_links.sh` (liệt kê mọi link trong `job-reports/*/report.md` và `JD.md` của các ngày trước, đã bỏ query/fragment/dấu `/` cuối, chữ thường) rồi loại mọi tin có link trùng sau khi chuẩn hoá giống vậy. Cùng công ty, cùng vị trí nhưng khác link (ví dụ đăng lại trên trang khác) cũng coi là trùng, trừ khi là đợt tuyển mới có hạn nộp mới (ghi rõ lý do trong cột "Lý do").
+   **Không bao giờ đưa lại một link công việc đã có ở báo cáo của ngày khác.** Trước khi viết `report.md` cho ngày mới, chạy `bash scripts/seen_job_links.sh` (liệt kê mọi link trong `job-reports/*/report.md` và `JD.md` của các ngày trước, cùng `job-reports/seen-links.txt` chứa link của các báo cáo đã xoá, đã bỏ query/fragment/dấu `/` cuối, chữ thường) rồi loại mọi tin có link trùng sau khi chuẩn hoá giống vậy. Cùng công ty, cùng vị trí nhưng khác link (ví dụ đăng lại trên trang khác) cũng coi là trùng, trừ khi là đợt tuyển mới có hạn nộp mới (ghi rõ lý do trong cột "Lý do").
 3. `report.md`: Công ty | Vị trí | Cấp bậc | Hình thức | Link nộp | Hạn nộp | Điểm phù hợp | Lý do / gap kỹ năng | Đường dẫn tương đối tới PDF | Trạng thái.
 4. Với công việc người dùng chọn → chạy `overleaf-cv-tailor` (vẫn phải hỏi trước khi sửa), đặt PDF vào thư mục công việc, cập nhật cột đường dẫn.
 5. **KHÔNG tự nộp đơn, không điền form, không gửi email thay người dùng.**

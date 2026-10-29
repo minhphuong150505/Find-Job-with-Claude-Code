@@ -1,0 +1,10 @@
+# Link tin tuyển dụng của các báo cáo đã xoá khỏi job-reports/ (vẫn dùng để chống trùng).
+# Mỗi dòng một link đã chuẩn hoá; dòng bắt đầu bằng # là ghi chú.
+
+# 2026-10-28 (xoá ngày 2026-10-29)
+https://careerviet.vn/vi/tim-viec-lam/software-developer.35c8bc56.html
+https://itviec.com/it-jobs/ai-engineer-computer-vision-python-llm-ai-di-2812
+https://itviec.com/it-jobs/fullstack-developer-intern-sql-javascipt-git-hongthai-technical-3656
+https://itviec.com/it-jobs/software-developer-fresher-junior-good-english-netcompany-0141
+https://itviec.com/it-jobs/software-engineer-intern-money-forward-vietnam-co-ltd-4718
+https://itviec.com/it-jobs/software-engineer-intern-taptap-1141
