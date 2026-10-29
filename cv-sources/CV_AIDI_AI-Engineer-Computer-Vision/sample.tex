@@ -6,7 +6,7 @@
 \documentclass[10pt, a4paper]{article}
 
 %---------- PACKAGES ----------
-\usepackage[top=0.7cm, bottom=0.7cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[top=0.6cm, bottom=0.6cm, left=1.2cm, right=1.2cm]{geometry}
 \usepackage{fontspec}
 \usepackage{xcolor}
 \usepackage{titlesec}
@@ -40,16 +40,17 @@
 \titleformat{\section}
   {\large\bfseries\color{NavyBlue}}{}{0em}{\MakeUppercase}
   [\vspace{-5pt}{\color{NavyBlue}\rule{\linewidth}{0.6pt}}]
-\titlespacing{\section}{0pt}{4pt}{2pt}
+\titlespacing{\section}{0pt}{3pt}{2pt}
 
-\setlist[itemize]{leftmargin=1.1em, label=\textbullet, itemsep=0.5pt, topsep=1pt, parsep=0pt}
+\setlist[itemize]{leftmargin=1.1em, label=\textbullet, itemsep=0pt, topsep=0.5pt, parsep=0pt}
 
 %---------- HELPERS ----------
-% Bold is reserved for headings: section titles, project / company / school names.
+% Bold: headings, skill-category labels and measured numbers in Key Projects.
 \newcommand{\entry}[2]{\textbf{#1}\hfill#2\par}
 \newcommand{\subentry}[2]{{\color{MutedText}#1}\hfill{\color{MutedText}#2}\par}
 \newcommand{\project}[3]{\textbf{#1}\,{\color{MutedText}\textbar{} #2}\hfill\href{#3}{GitHub}\par}
-\newcommand{\skillrow}[2]{#1: #2\par}
+\newcommand{\skillrow}[2]{\textbf{#1}: #2\par}
+\newcommand{\techstack}[1]{{\color{MutedText}Tech stack: #1}\par}
 \newcommand{\award}[3]{\item #1 {\color{MutedText}- #2}\hfill{\color{MutedText}#3}}
 
 \begin{document}
@@ -81,34 +82,36 @@
 \section{Key Projects}
 \project{META-CXR - Multimodal AI for Chest X-ray Report Generation}{Graduation thesis \textbullet{} Solo}{https://github.com/minhphuong150505/Meta-CXR}
 \begin{itemize}
-  \item Reproduced and extended a two-stage vision-language model (IEEE Access 2025) in PyTorch on MIMIC-CXR: two medical vision encoders (BioViL-T, PubMedCLIP) + Q-Former classify 14 abnormalities, then MedGemma-4B fine-tuned with QLoRA writes the report.
-  \item Model optimization: partially unfreezing both encoders raised test macro-AUROC 0.744 $\rightarrow$ 0.764 on 3,269 held-out studies (paired bootstrap CI above 0, gains on 14/14 labels), with thresholds calibrated on validation only.
-  \item Fixed an image-representation bug: restored each encoder's native patch grid and removed a constant component by per-image centering, cutting pairwise patch cosine similarity from 0.674 to $-0.014$ at only +0.6\% step time.
-  \item Reproducible experiments: controlled A/B runs dropped components with no measurable gain (Grad-CAM explanation loss, deeper unfreezing); joining MS-CXR boxes by image ID exposed 166 boxes leaking into the test split; 1,012 pytest tests passed.
-  \item LLM debugging: found the chat stop token was overridden, so 78\% of generated tokens came after the model had finished.
-  \item Infrastructure: full training on one 16 GB GPU (fixed recurring kernel faults traced to unstable RAM settings); multi-GPU DDP smoke runs on 2$\times$ T4 with checkpoints on Google Cloud Storage.
+  \item Reproduced and extended a two-stage vision-language model (IEEE Access 2025) in PyTorch on MIMIC-CXR: two medical vision encoders (BioViL-T, PubMedCLIP) + Q-Former classify \textbf{14} abnormalities, then MedGemma-4B fine-tuned with QLoRA writes the report.
+  \item Model optimization: partially unfreezing both encoders raised test macro-AUROC \textbf{0.744 $\rightarrow$ 0.764} on \textbf{3,269} held-out studies (paired bootstrap CI above 0, gains on \textbf{14/14} labels), with thresholds calibrated on validation only.
+  \item Fixed an image-representation bug: restored each encoder's native patch grid and removed a constant component by per-image centering, cutting pairwise patch cosine similarity from \textbf{0.674} to \textbf{-0.014} at only \textbf{+0.6\%} step time.
+  \item Reproducible experiments: controlled A/B runs dropped components with no measurable gain (Grad-CAM explanation loss, deeper unfreezing); joining MS-CXR boxes by image ID exposed \textbf{166} boxes leaking into the test split; \textbf{1,012} pytest tests passed.
+  \item LLM debugging: found the chat stop token was overridden, so \textbf{78\%} of generated tokens came after the model had finished.
+  \item Infrastructure: full training on one \textbf{16 GB} GPU (fixed recurring kernel faults traced to unstable RAM settings); multi-GPU DDP smoke runs on \textbf{2$\times$ T4} with checkpoints on Google Cloud Storage.
 \end{itemize}
 \vspace{2pt}
-\project{FPT Tri Thuc - Enterprise RAG Assistant}{Personal project \textbullet{} Solo}{https://github.com/minhphuong150505/milvus-rag-demo}
+\project{FPT Tri Thuc - Enterprise RAG Assistant}{Solo}{https://github.com/minhphuong150505/milvus-rag-demo}
 \begin{itemize}
   \item Python ingestion pipeline (PDF / web / text loaders, chunking, embedding, hash dedup) into Milvus 2.4, plus a Spring Boot RAG API for Vietnamese Q\&A over FPT corporate documents.
-  \item Pulls 64 candidates from Milvus, re-ranks by cosine plus keyword / bigram coverage, cites sources and abstains when evidence is weak; shows each chunk's cosine score in the UI so retrieval quality can be audited.
-  \item Token streaming over SSE with JSON fallback and per-upstream timeouts; 25 JUnit / Mockito tests and 9 Playwright E2E tests; runs on Docker Compose.
+  \item Pulls \textbf{64} candidates from Milvus, re-ranks by cosine plus keyword / bigram coverage, cites sources and abstains when evidence is weak; shows each chunk's cosine score in the UI so retrieval quality can be audited.
+  \item Token streaming over SSE with JSON fallback and per-upstream timeouts; \textbf{25} JUnit / Mockito tests and \textbf{9} Playwright E2E tests; runs on Docker Compose.
 \end{itemize}
 \vspace{2pt}
-\project{Chinese Learning Platform - Full-Stack AI Web App}{Personal project \textbullet{} Solo}{https://github.com/minhphuong150505/Web_Chinese_Learning-}
+\project{Chinese Learning Platform - Full-Stack AI Web App}{Solo}{https://github.com/minhphuong150505/Web_Chinese_Learning-}
 \begin{itemize}
-  \item Designed, built and deployed the whole product alone in under 2 months; used by friends, and iterated on their feedback.
+  \item Designed, built and deployed the whole product alone in under \textbf{2 months}; used by friends, and iterated on their feedback.
   \item Integrated AI into a real product: a Spring Boot API orchestrates an LLM (chat, translation, writing feedback), Azure Speech and a Python FastAPI service for F0 pitch analysis (per-syllable tone scoring); PostgreSQL + Flyway, Docker, deployed on GCP over HTTPS.
 \end{itemize}
 
 %======================================================================
 \section{Work Experience}
 \entry{FPT Software \textbar{} Java Developer Intern}{Ho Chi Minh City \textbar{} May 2026 - Oct 2026}
-\subentry{Project BUHINH - modernizing a Japanese automaker's material management (BOM) \& production-cost estimation system}{}
+\subentry{Project BUHINH - on-premise to cloud migration of a Japanese automaker's manufacturing BOM (MBOM) system}{}
+\techstack{Java EE, Spring Boot, Spring MVC, JSP, JavaScript, JDBC, SQL, IBM Db2, Maven, GitLab, Jira, GitHub Copilot}
 \begin{itemize}
-  \item Migrated legacy Java EE sub-systems to Spring Boot / Spring MVC as Maven multi-module projects, converting each layer with GitHub Copilot under the team's prompt rules and hand-reviewing every pattern the AI flagged.
-  \item Verified migrated JSP / JavaScript screens for functional parity and traced data errors through SQL trace logs; Scrum sprints on Jira, GitLab merge requests reviewed by the team lead.
+  \item Helped the team finish migration Phase 2 ahead of schedule by moving legacy Java EE sub-systems to Spring Boot / Spring MVC, using GitHub Copilot under the team's prompt rules and hand-reviewing every pattern it flagged.
+  \item Brought the cloud version of the parts-applicability search subsystem back in line with the legacy on-premise system: about 50 UI and 30 logic defects fixed and merged through GitLab merge requests.
+  \item Found about 15 on-premise vs cloud differences, logged them on Jira with reproducible steps and evidence, and resolved about 15 tickets as a full team member, on or ahead of deadline; internship rated 10/10 by the company.
 \end{itemize}
 
 %======================================================================

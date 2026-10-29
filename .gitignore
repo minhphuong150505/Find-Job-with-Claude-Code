@@ -14,3 +14,6 @@ career-ops/
 
 # Cấu hình Claude Code riêng của máy
 .claude/settings.local.json
+
+#Tài liệu cá nhân
+Docs/

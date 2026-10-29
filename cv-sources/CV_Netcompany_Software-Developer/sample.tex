@@ -6,7 +6,7 @@
 \documentclass[10pt, a4paper]{article}
 
 %---------- PACKAGES ----------
-\usepackage[top=0.7cm, bottom=0.7cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[top=0.7cm, bottom=0.7cm, left=1.3cm, right=1.3cm]{geometry}
 \usepackage{fontspec}
 \usepackage{xcolor}
 \usepackage{titlesec}
@@ -45,11 +45,11 @@
 \setlist[itemize]{leftmargin=1.1em, label=\textbullet, itemsep=0.5pt, topsep=1pt, parsep=0pt}
 
 %---------- HELPERS ----------
-% Bold is reserved for headings: section titles, project / company / school names.
+% Bold: headings, skill-category labels and measured numbers in Key Projects.
 \newcommand{\entry}[2]{\textbf{#1}\hfill#2\par}
 \newcommand{\subentry}[2]{{\color{MutedText}#1}\hfill{\color{MutedText}#2}\par}
 \newcommand{\project}[3]{\textbf{#1}\,{\color{MutedText}\textbar{} #2}\hfill\href{#3}{GitHub}\par}
-\newcommand{\skillrow}[2]{#1: #2\par}
+\newcommand{\skillrow}[2]{\textbf{#1}: #2\par}
 \newcommand{\techstack}[1]{{\color{MutedText}Tech stack: #1}\par}
 \newcommand{\award}[3]{\item #1 {\color{MutedText}- #2}\hfill{\color{MutedText}#3}}
 
@@ -86,33 +86,33 @@
 \begin{itemize}
   \item As lead developer (1 of 2 developers), designed the JWT-secured Spring Boot REST API for buying, selling and renting photography gear (auth, products, cart, orders, rentals).
   \item Turned buy / sell / rent business rules into a PostgreSQL schema managed with Flyway; integrated MoMo payment and GHN shipping via RestTemplate (JSON APIs, HMAC-verified payment callbacks) plus a catalog-grounded DeepSeek chatbot.
-  \item Built the native Android client (Java / XML, Retrofit) on the same API and verified end-to-end checkout and rental flows with manual and Postman testing across all 11 API modules.
+  \item Built the native Android client (Java / XML, Retrofit) on the same API and verified end-to-end checkout and rental flows with manual and Postman testing across all \textbf{11} API modules.
 \end{itemize}
 \vspace{2pt}
-\project{Chinese Learning Platform - Full-Stack AI Web App}{Personal project \textbullet{} Solo}{https://github.com/minhphuong150505/Web_Chinese_Learning-}
+\project{Chinese Learning Platform - Full-Stack AI Web App}{Solo}{https://github.com/minhphuong150505/Web_Chinese_Learning-}
 \techstack{Java 21, Spring Boot 3, Spring Security, WebClient, Python, FastAPI, React, TypeScript, PostgreSQL, Flyway, Azure Speech, Docker, GCP}
 \begin{itemize}
-  \item Designed, built and deployed the whole product alone in under 2 months; used by friends, and iterated on their feedback.
+  \item Designed, built and deployed the whole product alone in under \textbf{2 months}; used by friends, and iterated on their feedback.
   \item Backend: layered Spring Boot 3.3 (Java 21) REST API (controller / service / repository) with stateless JWT + Google OAuth2, orchestrating an LLM provider (chat, translation, writing feedback), Azure Speech and a Python FastAPI service for TTS and F0 tone analysis; API keys stay server-side.
   \item Frontend \& deployment: React + TypeScript single-page app for chat, pronunciation, translation, writing and HSK practice; PostgreSQL schema versioned with Flyway; every service containerized with Docker and deployed on GCP behind Caddy HTTPS.
 \end{itemize}
 \vspace{2pt}
-\project{FPT Tri Thuc - Enterprise RAG Assistant}{Personal project \textbullet{} Solo}{https://github.com/minhphuong150505/milvus-rag-demo}
+\project{FPT Tri Thuc - Enterprise RAG Assistant}{Solo}{https://github.com/minhphuong150505/milvus-rag-demo}
 \techstack{Java 17, Spring Boot 3, Python, Milvus 2.4, Ollama, LangChain text splitters, React 18, Docker Compose, Nginx, JUnit, Mockito, Playwright}
 \begin{itemize}
   \item Built a Vietnamese Q\&A assistant over FPT documents as separately containerized services: a Python ingestion pipeline (PDF / web / text loaders, chunking, embedding, hash dedup) into Milvus 2.4 and a Spring Boot RAG API.
-  \item API design: token streaming over SSE with JSON fallback, a bounded thread pool, per-upstream timeouts and sanitized error codes (400 / 502 / 503 / 504); covered by 25 JUnit / Mockito tests and 9 Playwright E2E tests.
+  \item API design: token streaming over SSE with JSON fallback, a bounded thread pool, per-upstream timeouts and sanitized error codes (400 / 502 / 503 / 504); covered by \textbf{25} JUnit / Mockito tests and \textbf{9} Playwright E2E tests.
 \end{itemize}
 
 %======================================================================
 \section{Work Experience}
 \entry{FPT Software \textbar{} Java Developer Intern}{Ho Chi Minh City \textbar{} May 2026 - Oct 2026}
-\subentry{Project BUHINH - modernizing a Japanese automaker's material management (BOM) \& production-cost estimation system}{}
-\techstack{Java EE, Spring Boot, Spring MVC, JSP, JavaScript, JDBC, JPA, Lombok, Maven, SQL, GitLab, Jira, GitHub Copilot}
+\subentry{Project BUHINH - on-premise to cloud migration of a Japanese automaker's manufacturing BOM (MBOM) system}{}
+\techstack{Java EE, Spring Boot, Spring MVC, JSP, JavaScript, JDBC, SQL, IBM Db2, Maven, GitLab, Jira, GitHub Copilot}
 \begin{itemize}
-  \item Migrated legacy Java EE sub-systems to Spring Boot / Spring MVC as Maven multi-module projects, converting each layer with GitHub Copilot under the team's prompt rules and hand-reviewing every pattern the AI flagged.
-  \item Verified migrated JSP / JavaScript screens for functional parity and traced data errors through SQL trace logs; Scrum sprints on Jira, GitLab merge requests reviewed by the team lead.
-  \item Ramped up fast and worked proactively, joining real project tasks early and helping the team finish Phase 2 ahead of schedule.
+  \item Helped the team finish migration Phase 2 ahead of schedule by moving legacy Java EE sub-systems to Spring Boot / Spring MVC, using GitHub Copilot under the team's prompt rules and hand-reviewing every pattern it flagged.
+  \item Brought the cloud version of the parts-applicability search subsystem back in line with the legacy on-premise system: about 50 UI and 30 logic defects fixed and merged through GitLab merge requests.
+  \item Found about 15 on-premise vs cloud differences, logged them on Jira with reproducible steps and evidence, and resolved about 15 tickets as a full team member, on or ahead of deadline; internship rated 10/10 by the company.
 \end{itemize}
 
 %======================================================================
