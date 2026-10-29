@@ -1,0 +1,16 @@
+# Credentials — không bao giờ commit
+.env
+.env.*
+!.env.example
+
+# Môi trường & cache cục bộ
+.venv-overleaf/
+.overleaf_cache/
+overleaf_cache/
+__pycache__/
+
+# Career-Ops là repo riêng (có .gitignore riêng cho dữ liệu cá nhân)
+career-ops/
+
+# Cấu hình Claude Code riêng của máy
+.claude/settings.local.json
